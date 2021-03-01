@@ -1,4 +1,26 @@
-FROM alpine:3.7
+#
+# Build project in separate container
+#
+
+FROM golang:alpine3.13 AS build
+
+RUN apk update && \
+    apk upgrade && \
+    apk add git
+COPY . /go/src/github.com/slysmoke/static-data
+
+WORKDIR /go/src/github.com/slysmoke/static-data
+RUN go mod init github.com/slysmoke/static-data
+RUN go get github.com/go-redis/redis/v8
+RUN go get go.opentelemetry.io/otel/label
+RUN go get -d -v ./...
+RUN go build
+RUN cp -r /go/src/github.com/slysmoke/static-data/static-data /static-data
+
+
+
+
+FROM alpine:3.8
 
 #
 # Copy release to container and set command
@@ -15,7 +37,7 @@ RUN printf "https://mirror.leaseweb.com/alpine/v3.7/main\nhttps://mirror.leasewe
 USER element43:element43
 
 # Copy build
-COPY static-data static-data
+COPY COPY --from=build /static-data /static-data
 
 ENV PORT 43000
 EXPOSE 43000
