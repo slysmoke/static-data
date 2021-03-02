@@ -6,6 +6,8 @@ import (
 
 	pb "github.com/EVE-Tools/static-data/lib/staticData"
 	"github.com/antihax/goesi"
+	"github.com/antihax/goesi/esi"
+	"github.com/antihax/goesi/optional"
 	"github.com/boltdb/bolt"
 	"github.com/golang/protobuf/proto"
 	google_pb "github.com/golang/protobuf/ptypes/empty"
@@ -113,10 +115,11 @@ func updateMarketTypes() {
 // Get all typeIDs from ESI
 func getTypeIDs() ([]int32, error) {
 	var typeIDs []int32
-	params := make(map[string]interface{})
-	params["page"] = int32(1)
+	var p int = 1
+	//params := make(map[string]interface{})
+	//params["page"] = int32(1)
 
-	typeResult, _, err := esiClient.ESI.UniverseApi.GetUniverseTypes(nil, params)
+	typeResult, _, err := esiClient.ESI.UniverseApi.GetUniverseTypes(nil, &esi.GetUniverseTypesOpts{Page: optional.NewInt32(int32(p))})
 	if err != nil {
 		return nil, err
 	}
@@ -124,8 +127,11 @@ func getTypeIDs() ([]int32, error) {
 	typeIDs = append(typeIDs, typeResult...)
 
 	for len(typeResult) > 0 {
-		params["page"] = params["page"].(int32) + 1
-		typeResult, _, err = esiClient.ESI.UniverseApi.GetUniverseTypes(nil, params)
+		//params["page"] = params["page"].(int32) + 1
+
+		p = p + 1
+
+		typeResult, _, err = esiClient.ESI.UniverseApi.GetUniverseTypes(nil, &esi.GetUniverseTypesOpts{Page: optional.NewInt32(int32(p))})
 		if err != nil {
 			return nil, err
 		}

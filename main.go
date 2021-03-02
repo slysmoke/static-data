@@ -11,16 +11,15 @@ import (
 	"github.com/antihax/goesi"
 	"google.golang.org/grpc"
 
-	"github.com/EVE-Tools/element43/go/lib/transport"
-	"github.com/EVE-Tools/static-data/lib/locations"
-	"github.com/EVE-Tools/static-data/lib/server"
-	pb "github.com/EVE-Tools/static-data/lib/staticData"
-	"github.com/EVE-Tools/static-data/lib/types"
+	"github.com/slysmoke/element43/go/lib/transport"
+	"github.com/slysmoke/static-data/lib/locations"
+	"github.com/slysmoke/static-data/lib/server"
+	pb "github.com/slysmoke/static-data/lib/staticData"
+	"github.com/slysmokes/static-data/lib/types"
 
 	"github.com/boltdb/bolt"
 	"github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus"
-	"github.com/grpc-ecosystem/go-grpc-middleware/tags"
 	"github.com/kelseyhightower/envconfig"
 	"github.com/sirupsen/logrus"
 )
@@ -72,7 +71,7 @@ func getClients(config Config) (*goesi.APIClient, *http.Client, string) {
 
 	httpClientESI := &http.Client{
 		Timeout:   timeout,
-		Transport: transport.NewESITransport(userAgent, timeout),
+		Transport: transport.NewESITransport(userAgent, timeout, 5),
 	}
 
 	esiClient := goesi.NewAPIClient(httpClientESI, userAgent)
