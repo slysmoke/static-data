@@ -12,11 +12,11 @@ import (
 
 	"io/ioutil"
 
-	pb "github.com/EVE-Tools/static-data/lib/staticData"
 	"github.com/antihax/goesi"
 	"github.com/boltdb/bolt"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
+	pb "github.com/slysmoke/static-data/lib/staticData"
 )
 
 // GetLocations returns location info for a given list.

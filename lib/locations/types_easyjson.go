@@ -4,11 +4,11 @@ package locations
 
 import (
 	json "encoding/json"
-	staticData "github.com/EVE-Tools/static-data/lib/staticData"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	easyjson "github.com/mailru/easyjson"
 	jlexer "github.com/mailru/easyjson/jlexer"
 	jwriter "github.com/mailru/easyjson/jwriter"
+	staticData "github.com/slysmoke/static-data/lib/staticData"
 )
 
 // suppress unused package warning

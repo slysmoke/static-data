@@ -15,7 +15,7 @@ import (
 	"github.com/slysmoke/static-data/lib/locations"
 	"github.com/slysmoke/static-data/lib/server"
 	pb "github.com/slysmoke/static-data/lib/staticData"
-	"github.com/slysmokes/static-data/lib/types"
+	"github.com/slysmoke/static-data/lib/types"
 
 	"github.com/boltdb/bolt"
 	"github.com/grpc-ecosystem/go-grpc-middleware"

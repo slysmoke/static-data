@@ -3,10 +3,10 @@ package server
 import (
 	"context"
 
-	"github.com/EVE-Tools/static-data/lib/locations"
-	pb "github.com/EVE-Tools/static-data/lib/staticData"
-	"github.com/EVE-Tools/static-data/lib/types"
 	google_pb "github.com/golang/protobuf/ptypes/empty"
+	"github.com/slysmoke/static-data/lib/locations"
+	pb "github.com/slysmoke/static-data/lib/staticData"
+	"github.com/slysmoke/static-data/lib/types"
 )
 
 // Server is the gRPC server of this service

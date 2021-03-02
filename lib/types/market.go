@@ -4,7 +4,6 @@ import (
 	"context"
 	"time"
 
-	pb "github.com/EVE-Tools/static-data/lib/staticData"
 	"github.com/antihax/goesi"
 	"github.com/antihax/goesi/esi"
 	"github.com/antihax/goesi/optional"
@@ -12,6 +11,7 @@ import (
 	"github.com/golang/protobuf/proto"
 	google_pb "github.com/golang/protobuf/ptypes/empty"
 	"github.com/sirupsen/logrus"
+	pb "github.com/slysmoke/static-data/lib/staticData"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
