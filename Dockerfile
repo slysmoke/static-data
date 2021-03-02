@@ -44,6 +44,8 @@ USER element43:element43
 # Copy build
 COPY --from=build /static-data /static-data
 
+RUN chown -R element43:element43 /static-data
+
 ENV PORT 43000
 EXPOSE 43000
 
