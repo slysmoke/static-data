@@ -18,8 +18,8 @@ import (
 	"github.com/slysmoke/static-data/lib/types"
 
 	"github.com/boltdb/bolt"
-	"github.com/grpc-ecosystem/go-grpc-middleware"
-	"github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus"
+	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
+	grpc_logrus "github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus"
 	grpc_ctxtags "github.com/grpc-ecosystem/go-grpc-middleware/tags"
 	"github.com/kelseyhightower/envconfig"
 	"github.com/sirupsen/logrus"
@@ -30,9 +30,9 @@ type Config struct {
 	DBPath            string `default:"static-data.db" envconfig:"db_path"`
 	LogLevel          string `default:"info" envconfig:"log_level"`
 	Port              string `default:"43000" envconfig:"port"`
-	ESIHost           string `default:"esi.tech.ccp.is" envconfig:"esi_host"`
-	StructureHuntHost string `default:"stop.hammerti.me.uk" envconfig:"structure_hunt_host"`
-	DisableTLS        bool   `default:"false" envconfig:"disable_tls"`
+	ESIHost           string `default:"esi.evetech.net" envconfig:"esi_host"`
+	StructureHuntHost string `default:"evernus.anver.ee" envconfig:"structure_hunt_host"`
+	DisableTLS        bool   `default:"true" envconfig:"disable_tls"`
 }
 
 func main() {
@@ -79,10 +79,10 @@ func getClients(config Config) (*goesi.APIClient, *http.Client, string) {
 
 	if config.DisableTLS {
 		esiClient.ChangeBasePath(fmt.Sprintf("http://%s:443", config.ESIHost))
-		structureHuntURL = fmt.Sprintf("http://%s:443/api/structure/all", config.StructureHuntHost)
+		structureHuntURL = fmt.Sprintf("http://%s:443/citadel.json", config.StructureHuntHost)
 	} else {
 		esiClient.ChangeBasePath(fmt.Sprintf("https://%s", config.ESIHost))
-		structureHuntURL = fmt.Sprintf("https://%s/api/structure/all", config.StructureHuntHost)
+		structureHuntURL = fmt.Sprintf("https://%s/citadel.json", config.StructureHuntHost)
 	}
 
 	return esiClient, genericClient, structureHuntURL

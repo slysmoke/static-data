@@ -33,6 +33,11 @@ RUN printf "https://mirror.leaseweb.com/alpine/v3.7/main\nhttps://mirror.leasewe
     apk add ca-certificates && \
     rm -rf /var/cache/apk/*
 
+RUN addgroup -g 1000 -S element43 && \
+    adduser -u 1000 -S element43 -G element43 && \
+    mkdir /data && \
+    chown -R element43:element43 /data
+
 # Do not run as root
 USER element43:element43
 
