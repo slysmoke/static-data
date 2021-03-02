@@ -37,14 +37,14 @@ RUN addgroup -g 1000 -S element43 && \
     adduser -u 1000 -S element43 -G element43 && \
     mkdir /data && \
     chown -R element43:element43 /data
-
+RUN chown -R element43:element43 /static-data
 # Do not run as root
 USER element43:element43
 
 # Copy build
 COPY --from=build /static-data /static-data
 
-RUN chown -R element43:element43 /static-data
+
 
 ENV PORT 43000
 EXPOSE 43000
