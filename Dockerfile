@@ -37,7 +37,7 @@ RUN printf "https://mirror.leaseweb.com/alpine/v3.7/main\nhttps://mirror.leasewe
 USER element43:element43
 
 # Copy build
-COPY COPY --from=build /static-data /static-data
+COPY --from=build /static-data /static-data
 
 ENV PORT 43000
 EXPOSE 43000
