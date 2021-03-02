@@ -15,12 +15,12 @@ RUN go get github.com/go-redis/redis/v8
 RUN go get go.opentelemetry.io/otel/label
 RUN go get -d -v ./...
 RUN go build
-RUN cp -r /go/src/github.com/slysmoke/static-data/static-data /static-data
+RUN cp /go/src/github.com/slysmoke/static-data/static-data /static-data
 
 
 
 
-FROM alpine:3.8
+FROM alpine:3.7
 
 #
 # Copy release to container and set command
