@@ -3,7 +3,7 @@ package locations
 import (
 	"time"
 
-	pb "github.com/EVE-Tools/static-data/lib/staticData"
+	pb "github.com/slysmoke/static-data/lib/staticData"
 )
 
 //

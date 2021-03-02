@@ -20,6 +20,7 @@ import (
 	"github.com/boltdb/bolt"
 	"github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus"
+	grpc_ctxtags "github.com/grpc-ecosystem/go-grpc-middleware/tags"
 	"github.com/kelseyhightower/envconfig"
 	"github.com/sirupsen/logrus"
 )
